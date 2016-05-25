@@ -4,6 +4,8 @@ angular.module('AngularScaffold.Controllers')
       $scope.exampleObject = {text: "WELCOME"}
       $scope.ingredients = [];
       $scope.ingredient = {};
+      $scope.prducts = [];
+      $scope.product = {};
 
       $scope.getIngredients = function(){
         HomeService.GetIngredients().then(function(response){
@@ -18,6 +20,24 @@ angular.module('AngularScaffold.Controllers')
         HomeService.PostIngredients($scope.ingredient).then(function(response){
           alert("Posted to ingredients");
           $scope.getIngredients();
+        }).catch(function(err){
+          alert(err.data.error + " " + err.data.message);
+        });
+      }
+
+      $scope.getProducts = function(){
+        HomeService.GetProducts().then(function(response){
+          $scope.products = response.data;
+          console.log($scope.products);
+        }).catch(function(err){
+          alert(err.data.error + " " + err.data.message)
+        });
+      }
+
+      $scope.postProducts = function(){
+        HomeService.PostProducts($scope.product).then(function(response){
+          alert("Posted to products");
+          $scope.getProducts();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         });

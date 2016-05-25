@@ -16,5 +16,18 @@ angular.module('AngularScaffold.Services').factory('HomeService', ['$http',
 				DeleteIngredient: function(param){
 					return $http.delete(baseUrl + "v1/deleteIngredient/" + param);
 				}
+
+				PostProducts: function(payload){
+					return $http.post(baseUrl + "v1/createProduct", payload);
+				},
+				GetProduct: function(param){
+					return $http.get(baseUrl + "v1/getProduct/" + param);
+				},
+				GetProducts: function(){
+					return $http.get(baseUrl + "v1/products");
+				},
+				DeleteProduct: function(param){
+					return $http.delete(baseUrl + "v1/deleteProduct/" + param);
+				}
 	    };
 }]);
